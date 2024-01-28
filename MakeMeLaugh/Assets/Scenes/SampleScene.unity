@@ -579,10 +579,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3685d99b03f4f6cb0c581a0ef95290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eyeBrowsValue: 0
+  eyesValue: 0
+  mouthValue: 0
   valueUpLimit: 125
   passValue: 100
   dampSpeed: 0.01
-  playInterval: 0.3
+  playInterval: 0.5
   timeSinceLastPlay: 0.3
   eyebrow: {fileID: 1652664436}
   eye: {fileID: 1560944658}

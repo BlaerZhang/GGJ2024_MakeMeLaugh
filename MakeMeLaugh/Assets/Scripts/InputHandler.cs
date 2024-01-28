@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,9 +6,9 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    private float eyeBrowsValue = 0f;
-    private float eyesValue = 0f;
-    private float mouthValue = 0f;
+    public float eyeBrowsValue = 0f;
+    public float eyesValue = 0f;
+    public float mouthValue = 0f;
 
     public float valueUpLimit = 125f;
     public float passValue = 100f;
@@ -23,6 +24,8 @@ public class InputHandler : MonoBehaviour
 
     public List<Ability> abilities = new List<Ability>();
 
+    public event Action<Ability> onAbilityTriggered;
+
     void Update()
     {
         if (timeSinceLastPlay < playInterval)
@@ -33,9 +36,9 @@ public class InputHandler : MonoBehaviour
 
         DampOutValue();
 
-        eyebrow.text = ((eyeBrowsValue * 1000)/1000).ToString();
-        eye.text = ((eyesValue * 1000)/1000).ToString();
-        mouth.text = ((mouthValue * 1000)/1000).ToString();
+        // eyebrow.text = ((eyeBrowsValue * 1000)/1000).ToString();
+        // eye.text = ((eyesValue * 1000)/1000).ToString();
+        // mouth.text = ((mouthValue * 1000)/1000).ToString();
 
         CheckPassValue();
     }
@@ -118,6 +121,8 @@ public class InputHandler : MonoBehaviour
                     }
 
                     timeSinceLastPlay = 0f;
+
+                    onAbilityTriggered(ability);
                 }
             }
         }
