@@ -15,11 +15,13 @@ public class AnimatorManager : MonoBehaviour
     private void OnEnable()
     {
         inputHandler.onAbilityTriggered += OnAbilityTriggered;
+        inputHandler.onLevelPassed += OnLevelPassed;
     }
 
     private void OnDisable()
     {
         inputHandler.onAbilityTriggered -= OnAbilityTriggered;
+        inputHandler.onLevelPassed -= OnLevelPassed;
     }
 
     void Awake()
@@ -32,6 +34,11 @@ public class AnimatorManager : MonoBehaviour
         eyebrow.SetFloat("Eyebrow Value", inputHandler.eyeBrowsValue);
         eyes.SetFloat("Eye Value", inputHandler.eyesValue);
         mouth.SetFloat("Mouth Value", inputHandler.mouthValue);
+    }
+
+    private void OnLevelPassed()
+    {
+        mouth.SetBool("Win", true);
     }
 
     private void OnAbilityTriggered(Ability ability)
