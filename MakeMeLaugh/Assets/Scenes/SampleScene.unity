@@ -582,7 +582,7 @@ MonoBehaviour:
   valueUpLimit: 125
   passValue: 100
   dampSpeed: 0.01
-  playInterval: 0.5
+  playInterval: 0.3
   timeSinceLastPlay: 0.3
   eyebrow: {fileID: 1652664436}
   eye: {fileID: 1560944658}

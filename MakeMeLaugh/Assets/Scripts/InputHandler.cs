@@ -72,41 +72,49 @@ public class InputHandler : MonoBehaviour
                     // eyebrows
                     if (ability.eyebrowsChangeValue > 0)
                     {
-                        if (CheckWhetherOverLimit(eyeBrowsValue, valueUpLimit - ability.eyebrowsChangeValue, 0)) return;
-
-                        eyeBrowsValue += ability.eyebrowsChangeValue;
+                        if (!CheckWhetherOverLimit(eyeBrowsValue, valueUpLimit - ability.eyebrowsChangeValue, 0))
+                        {
+                            eyeBrowsValue += ability.eyebrowsChangeValue;
+                        }
                     }
                     else if (ability.eyebrowsChangeValue < 0)
                     {
-                        if (CheckWhetherOverLimit(eyeBrowsValue, valueUpLimit, Mathf.Abs(ability.eyebrowsChangeValue))) return;
-
-                        eyeBrowsValue += ability.eyebrowsChangeValue;
+                        if (!CheckWhetherOverLimit(eyeBrowsValue, valueUpLimit, Mathf.Abs(ability.eyebrowsChangeValue)))
+                        {
+                            eyeBrowsValue += ability.eyebrowsChangeValue;
+                        }
                     }
 
                     // eyes
                     if (ability.eyesChangeValue > 0)
                     {
-                        if (CheckWhetherOverLimit(eyesValue, valueUpLimit - ability.eyesChangeValue, 0)) return;
-
-                        eyesValue += ability.eyesChangeValue;
+                        if (!CheckWhetherOverLimit(eyesValue, valueUpLimit - ability.eyesChangeValue, 0))
+                        {
+                            eyesValue += ability.eyesChangeValue;
+                        }
                     }
                     else if (ability.eyesChangeValue < 0)
                     {
-                        if (CheckWhetherOverLimit(eyesValue, valueUpLimit, Mathf.Abs(ability.eyesChangeValue))) return;
-                        eyesValue += ability.eyesChangeValue;
+                        if (!CheckWhetherOverLimit(eyesValue, valueUpLimit, Mathf.Abs(ability.eyesChangeValue)))
+                        {
+                            eyesValue += ability.eyesChangeValue;
+                        }
                     }
 
                     // mouth
                     if (ability.mouthChangeValue > 0)
                     {
-                        if (CheckWhetherOverLimit(mouthValue, valueUpLimit - ability.eyesChangeValue, 0)) return;
-
-                        mouthValue += ability.mouthChangeValue;
+                        if (!CheckWhetherOverLimit(mouthValue, valueUpLimit - ability.mouthChangeValue, 0))
+                        {
+                            mouthValue += ability.mouthChangeValue;
+                        }
                     }
                     else if (ability.mouthChangeValue < 0)
                     {
-                        if (CheckWhetherOverLimit(mouthValue, valueUpLimit, Mathf.Abs(ability.mouthChangeValue)))  return;
-                        mouthValue += ability.mouthChangeValue;
+                        if (!CheckWhetherOverLimit(mouthValue, valueUpLimit, Mathf.Abs(ability.mouthChangeValue)))
+                        {
+                            mouthValue += ability.mouthChangeValue;
+                        }
                     }
 
                     timeSinceLastPlay = 0f;
