@@ -21,6 +21,6 @@ public class EmoticonAnimation : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.position = new Vector3(0, yPos, 0);
+        transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
     }
 }
