@@ -75,7 +75,10 @@ public class InputHandler : MonoBehaviour
             {
                 if (timeSinceLastPlay >= playInterval)
                 {
-                    StartCoroutine(ability.abilityIcon.CooldownEffect(playInterval));
+                    foreach (var a in abilities)
+                    {
+                        StartCoroutine(a.abilityIcon.CooldownEffect(playInterval));
+                    }
 
                     // eyebrows
                     if (ability.eyebrowsChangeValue > 0)
