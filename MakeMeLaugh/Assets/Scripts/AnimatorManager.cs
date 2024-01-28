@@ -38,6 +38,8 @@ public class AnimatorManager : MonoBehaviour
 
     private void OnLevelPassed()
     {
+        eyebrow.SetBool("Win", true);
+        eyes.SetBool("Win", true);
         mouth.SetBool("Win", true);
     }
 

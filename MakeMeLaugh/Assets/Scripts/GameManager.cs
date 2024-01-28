@@ -1,15 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public CanvasGroup canvasGroup;
     public float fadeSpeed = 1.5f;
+
+    [HideInInspector] public bool isInGame;
+
+    private RawImage transitionMask;
+    private Image outroMask;
+    private TextMeshProUGUI line;
+    private GameObject emoticon;
+    private GameObject iconHolder;
 
     private void Awake()
     {
@@ -22,18 +32,24 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        transitionMask = canvasGroup.GetComponentInChildren<RawImage>();
+        outroMask = canvasGroup.GetComponentInChildren<Image>();
+        line = canvasGroup.GetComponentInChildren<TextMeshProUGUI>();
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
-        
+        // emoticon = GameObject.Find("Emoticon");
+        // iconHolder = GameObject.Find("Icon Holder");
+        // emoticon.SetActive(false);
+        // iconHolder.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PressF5ResetGame();
+        if(Input.GetKeyDown(KeyCode.A)) PlayLevelOutro();
     }
 
     private void OnEnable()
@@ -48,9 +64,248 @@ public class GameManager : MonoBehaviour
 
      private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(FadeOut());
+        // StartCoroutine(FadeOut());
+        emoticon = GameObject.Find("Emoticon");
+        iconHolder = GameObject.Find("Icon Holder");
+        
+        isInGame = false;
+        emoticon.SetActive(false);
+        iconHolder.SetActive(false);
+
+        outroMask.rectTransform.DOLocalMoveX(2000, 0);
+        transitionMask.rectTransform.DOLocalMoveX(0, 0);
+        transitionMask.rectTransform.DOLocalMoveX(-2000, 0.5f).SetEase(Ease.InQuad).OnComplete((() =>
+        {
+            Sequence openingSequence = DOTween.Sequence();
+            switch (scene.buildIndex)
+            {
+                case 1:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("Making someone laugh is hard", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            emoticon.SetActive(true);
+                            iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                case 2:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("You can always use multiple techniques", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            emoticon.SetActive(true);
+                            iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                case 3:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("But even one person may react differently to various kinds of humor.", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            emoticon.SetActive(true);
+                            iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                case 4:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("Reaction are often mixed and ambiguous", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            emoticon.SetActive(true);
+                            iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                case 5:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("So you'll need to keep tweaking your strategy.", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            emoticon.SetActive(true);
+                            iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                case 6:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("Everyone’s got their own comedy groove.", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            emoticon.SetActive(true);
+                            iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                default:
+                    break;
+            }
+        }));
     }
 
+    public void PlayLevelOutro()
+    {
+        isInGame = false;
+        foreach (var icon in iconHolder.GetComponentsInChildren<AbilityIcon>()) icon.enabled = false;
+        
+        outroMask.rectTransform.DOLocalMoveX(2000, 0);
+        outroMask.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.InQuad).OnComplete((() =>
+        {
+            Sequence outroSequence = DOTween.Sequence();
+            switch (SceneManager.GetActiveScene().buildIndex)
+            {
+                case 1:
+                    outroSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("...and sometimes, it's surprisingly simple.", 0f))
+                        .AppendInterval(2)
+                        .OnComplete((() =>
+                        {
+                            ProceedToNextLevel();
+                        }));
+                    outroSequence.Play();
+                    break;
+                case 2:
+                    outroSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("Blending and variation usually does the trick.", 0f))
+                        .AppendInterval(2)
+                        .OnComplete((() =>
+                        {
+                            ProceedToNextLevel();
+                        }));
+                    outroSequence.Play();
+                    break;
+                case 3:
+                    outroSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("Some techniques may well backfire", 0f))
+                        .AppendInterval(2)
+                        .OnComplete((() =>
+                        {
+                            ProceedToNextLevel();
+                        }));
+                    outroSequence.Play();
+                    break;
+                case 4:
+                    outroSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("This complexity adds a layer of challenge to the endeavor.", 0f))
+                        .AppendInterval(2)
+                        .OnComplete((() =>
+                        {
+                            ProceedToNextLevel();
+                        }));
+                    outroSequence.Play();
+                    break;
+                case 5:
+                    outroSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("and be adaptable.", 0f))
+                        .AppendInterval(2)
+                        .OnComplete((() =>
+                        {
+                            ProceedToNextLevel();
+                        }));
+                    outroSequence.Play();
+                    break;
+                case 6:
+                    outroSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("which makes it even harder to delight two at once.", 0f))
+                        .AppendInterval(2)
+                        .OnComplete((() =>
+                        {
+                            ProceedToNextLevel();
+                        }));
+                    outroSequence.Play();
+                    break;
+                default:
+                    break;
+            }
+        }));
+    }
+     
+    public void ProceedToNextLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            // StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+            transitionMask.rectTransform.DOLocalMoveX(2000, 0);
+            transitionMask.rectTransform.DOLocalMoveX(0, 0.5f).SetEase(Ease.InQuad).OnComplete((() =>
+            {
+                line.DOText("", 0);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }));
+        }
+        else
+        {
+            // StartCoroutine(LoadScene(0));
+            transitionMask.rectTransform.DOLocalMoveX(2000, 0);
+            transitionMask.rectTransform.DOLocalMoveX(0, 0.5f).SetEase(Ease.InQuad).OnComplete((() =>
+            {
+                line.DOText("", 0);
+                SceneManager.LoadScene(0);
+            }));
+        }
+    }
+
+    void PressF5ResetGame()
+    {
+        if (Input.GetKeyUp(KeyCode.F5)) SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator LoadScene(int buildIndex)
+    {
+        // StartCoroutine(FadeIn());
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(buildIndex);
+    }
+    
     IEnumerator FadeIn()
     {
         float alpha = canvasGroup.alpha;
@@ -76,24 +331,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ProceedToNextLevel()
-    {
-        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
-        {
-            StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else
-        {
-            StartCoroutine(LoadScene(0));
-            // SceneManager.LoadScene(0);
-        }
-    }
-
-    private IEnumerator LoadScene(int buildIndex)
-    {
-        StartCoroutine(FadeIn());
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(buildIndex);
-    }
 }

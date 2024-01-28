@@ -32,6 +32,7 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
+        if(!GameManager.Instance.isInGame) return;
         if (isLevelPassed) return;
         if (timeSinceLastPlay < playInterval)
         {
