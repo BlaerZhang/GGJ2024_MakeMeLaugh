@@ -21,6 +21,25 @@ public class GameManager : MonoBehaviour
     private GameObject emoticon;
     private GameObject iconHolder;
 
+    public AudioSource darkSound;
+    public AudioSource selfSound;
+    public AudioSource wordSound;
+
+    public void PlayDarkSound()
+    {
+        darkSound.Play();
+    }
+
+    public void PlaySelfSound()
+    {
+        selfSound.Play();
+    }
+
+    public void PlayWordSound()
+    {
+        wordSound.Play();
+    }
+
     private void Awake()
     {
         if (Instance == null)

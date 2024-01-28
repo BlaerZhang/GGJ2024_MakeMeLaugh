@@ -73,6 +73,19 @@ public class InputHandler : MonoBehaviour
                         StartCoroutine(a.abilityIcon.CooldownEffect(playInterval));
                     }
 
+                    switch (abilityIndex)
+                    {
+                        case 0:
+                            GameManager.Instance.PlayWordSound();
+                            break;
+                        case 1:
+                            GameManager.Instance.PlaySelfSound();
+                            break;
+                        case 2:
+                            GameManager.Instance.PlayDarkSound();
+                            break;
+                    }
+
                     foreach (var face in faces)
                     {
                         face.ChangeValue(face.abilities[abilityIndex]);
