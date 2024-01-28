@@ -424,8 +424,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118814982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -433,7 +433,7 @@ Transform:
   - {fileID: 939256115}
   - {fileID: 876566421}
   - {fileID: 2102077694}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 259975765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &118814984
 Animator:
@@ -798,6 +798,79 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &259975764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259975765}
+  - component: {fileID: 259975766}
+  - component: {fileID: 259975767}
+  m_Layer: 0
+  m_Name: Face
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259975765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259975764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1387774099}
+  - {fileID: 1047921175}
+  - {fileID: 118814983}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259975766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259975764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740db6b5be5334d8a928daad8cd20f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeBrowsValue: 0
+  eyesValue: 0
+  mouthValue: 0
+  dampSpeed: 10
+  valueUpLimit: 125
+  passValue: 100
+  isPassed: 0
+  abilities:
+  - {fileID: 1769414101}
+--- !u!114 &259975767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259975764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a43e0dfa1a33004798efd1108daafc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  face: {fileID: 259975766}
+  eyebrow: {fileID: 1387774100}
+  eyes: {fileID: 1047921176}
+  mouth: {fileID: 118814984}
 --- !u!1 &313257587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,15 +2445,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047921174}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 560708394}
   - {fileID: 1797534237}
   - {fileID: 709033427}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 259975765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1047921176
 Animator:
@@ -2734,7 +2807,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1186792277}
   - component: {fileID: 1186792276}
-  - component: {fileID: 1186792278}
   m_Layer: 0
   m_Name: InputHandler
   m_TagString: Untagged
@@ -2754,22 +2826,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3685d99b03f4f6cb0c581a0ef95290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeBrowsValue: 0
-  eyesValue: 0
-  mouthValue: 0
-  eyeBrowsValue2: 0
-  eyesValue2: 0
-  mouthValue2: 0
-  hasTwoFaces: 0
-  valueUpLimit: 125
-  passValue: 100
-  dampSpeed: 5
+  faces:
+  - {fileID: 259975766}
   playInterval: 1
-  abilities:
-  - {fileID: 1769414101}
-  - {fileID: 1720761539}
-  - {fileID: 970737952}
-  abilities2: []
 --- !u!4 &1186792277
 Transform:
   m_ObjectHideFlags: 0
@@ -2785,21 +2844,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1186792278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186792275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a43e0dfa1a33004798efd1108daafc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eyebrow: {fileID: 1387774100}
-  eyes: {fileID: 1047921176}
-  mouth: {fileID: 118814984}
 --- !u!1 &1199451189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,15 +3109,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387774098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1325847875}
   - {fileID: 980396566}
   - {fileID: 1435905315}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 259975765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1387774100
 Animator:
@@ -3566,9 +3610,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerKey: 113
   abilityIcon: {fileID: 1080740363}
-  eyebrowsChangeValue: 20
-  eyesChangeValue: 20
-  mouthChangeValue: 20
+  eyebrowsChangeValue: 25
+  eyesChangeValue: 25
+  mouthChangeValue: 25
 --- !u!1 &1797534236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,8 +4508,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 92669345}
   - {fileID: 1383481369}
-  - {fileID: 1387774099}
-  - {fileID: 1047921175}
-  - {fileID: 118814983}
+  - {fileID: 259975765}
   - {fileID: 1199451190}
   - {fileID: 1186792277}
