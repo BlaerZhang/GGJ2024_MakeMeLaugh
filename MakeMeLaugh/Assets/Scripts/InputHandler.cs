@@ -28,8 +28,11 @@ public class InputHandler : MonoBehaviour
     public event Action<Ability> onAbilityTriggered;
     public event Action onLevelPassed;
 
+    private bool isLevelPassed = false;
+
     void Update()
     {
+        if (isLevelPassed) return;
         if (timeSinceLastPlay < playInterval)
         {
             timeSinceLastPlay += Time.deltaTime;
@@ -62,6 +65,7 @@ public class InputHandler : MonoBehaviour
         if (eyeBrowsValue >= passValue & eyesValue >= passValue & mouthValue >= passValue)
         {
             // pass level
+            isLevelPassed = true;
             onLevelPassed();
             print("pass the level");
         }
