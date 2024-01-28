@@ -65,7 +65,9 @@ public class GameManager : MonoBehaviour
      private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // StartCoroutine(FadeOut());
-        emoticon = GameObject.Find("Emoticon");
+        if (scene.buildIndex == 0) return;
+        
+        emoticon = GameObject.Find("Face");
         iconHolder = GameObject.Find("Icon Holder");
         
         isInGame = false;
@@ -181,11 +183,17 @@ public class GameManager : MonoBehaviour
         }));
     }
 
-    public void PlayLevelOutro()
+    public void OnLevelPassed()
     {
         isInGame = false;
-        foreach (var icon in iconHolder.GetComponentsInChildren<AbilityIcon>()) icon.enabled = false;
-        
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            foreach (var icon in iconHolder.GetComponentsInChildren<AbilityIcon>()) icon.enabled = false;
+        }
+    }
+
+    public void PlayLevelOutro()
+    {
         outroMask.rectTransform.DOLocalMoveX(2000, 0);
         outroMask.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.InQuad).OnComplete((() =>
         {

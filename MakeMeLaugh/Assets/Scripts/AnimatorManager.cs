@@ -7,33 +7,28 @@ using UnityEngine.Serialization;
 
 public class AnimatorManager : MonoBehaviour
 {
-    private InputHandler inputHandler;
+    public Face face;
     public Animator eyebrow;
     public Animator eyes;
     public Animator mouth;
 
     private void OnEnable()
     {
-        inputHandler.onAbilityTriggered += OnAbilityTriggered;
-        inputHandler.onLevelPassed += OnLevelPassed;
+        InputHandler.onAbilityTriggered += OnAbilityTriggered;
+        InputHandler.onLevelPassed += OnLevelPassed;
     }
 
     private void OnDisable()
     {
-        inputHandler.onAbilityTriggered -= OnAbilityTriggered;
-        inputHandler.onLevelPassed -= OnLevelPassed;
-    }
-
-    void Awake()
-    {
-        inputHandler = GetComponent<InputHandler>();
+        InputHandler.onAbilityTriggered -= OnAbilityTriggered;
+        InputHandler.onLevelPassed -= OnLevelPassed;
     }
 
     void Update()
     {
-        eyebrow.SetFloat("Eyebrow Value", inputHandler.eyeBrowsValue);
-        eyes.SetFloat("Eye Value", inputHandler.eyesValue);
-        mouth.SetFloat("Mouth Value", inputHandler.mouthValue);
+        eyebrow.SetFloat("Eyebrow Value", face.eyeBrowsValue);
+        eyes.SetFloat("Eye Value", face.eyesValue);
+        mouth.SetFloat("Mouth Value", face.mouthValue);
     }
 
     private void OnLevelPassed()
@@ -46,13 +41,13 @@ public class AnimatorManager : MonoBehaviour
     private void OnAbilityTriggered(Ability ability)
     {
         if (ability.eyebrowsChangeValue > 0) eyebrow.SetTrigger("Eyebrow Feedback");
-        if (ability.eyebrowsChangeValue < 0) eyebrow.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
+        if (ability.eyebrowsChangeValue < 0) eyebrow.transform.DOLocalMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
 
         if (ability.eyesChangeValue > 0) eyes.SetTrigger("Eye Feedback");
-        if (ability.eyesChangeValue < 0) eyes.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
+        if (ability.eyesChangeValue < 0) eyes.transform.DOLocalMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
 
         if (ability.mouthChangeValue > 0) mouth.SetTrigger("Mouth Feedback");
-        if (ability.mouthChangeValue < 0) mouth.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
+        if (ability.mouthChangeValue < 0) mouth.transform.DOLocalMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
         
     }
 }
