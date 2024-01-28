@@ -1361,7 +1361,7 @@ MonoBehaviour:
   eyeBrowsValue: 0
   eyesValue: 0
   mouthValue: 0
-  dampSpeed: 5
+  dampSpeed: 3
   valueUpLimit: 125
   passValue: 100
   isPassed: 0
@@ -3628,7 +3628,7 @@ MonoBehaviour:
   eyeBrowsValue: 0
   eyesValue: 0
   mouthValue: 0
-  dampSpeed: 5
+  dampSpeed: 3
   valueUpLimit: 125
   passValue: 100
   isPassed: 0

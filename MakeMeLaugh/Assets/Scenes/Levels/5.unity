@@ -3715,8 +3715,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerKey: 119
   abilityIcon: {fileID: 522526216}
-  eyebrowsChangeValue: -10
-  eyesChangeValue: -10
+  eyebrowsChangeValue: -5
+  eyesChangeValue: -5
   mouthChangeValue: 40
 --- !u!1 &1752859635
 GameObject:
