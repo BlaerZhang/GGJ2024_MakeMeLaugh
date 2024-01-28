@@ -48,7 +48,7 @@ public class InputHandler : MonoBehaviour
             isLevelPassed = true;
             onLevelPassed();
             GameManager.Instance.OnLevelPassed();
-            GameManager.Instance.Invoke("PlayLevelOutro",2f);
+            GameManager.Instance.Invoke("PlayLevelOutro",3f);
             print("pass the level");
         }
     }

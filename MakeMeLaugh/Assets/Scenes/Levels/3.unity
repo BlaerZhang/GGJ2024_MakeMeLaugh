@@ -1291,7 +1291,7 @@ MonoBehaviour:
   eyeBrowsValue: 0
   eyesValue: 0
   mouthValue: 0
-  dampSpeed: 0
+  dampSpeed: 1
   valueUpLimit: 125
   passValue: 100
   isPassed: 0
@@ -3875,9 +3875,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerKey: 119
   abilityIcon: {fileID: 522526216}
-  eyebrowsChangeValue: 25
-  eyesChangeValue: 25
-  mouthChangeValue: 25
+  eyebrowsChangeValue: 26
+  eyesChangeValue: 26
+  mouthChangeValue: 26
 --- !u!1 &1769414099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,9 +3924,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerKey: 113
   abilityIcon: {fileID: 1080740363}
-  eyebrowsChangeValue: -50
-  eyesChangeValue: -50
-  mouthChangeValue: -50
+  eyebrowsChangeValue: -51
+  eyesChangeValue: -51
+  mouthChangeValue: -51
 --- !u!1 &1781599004
 GameObject:
   m_ObjectHideFlags: 0

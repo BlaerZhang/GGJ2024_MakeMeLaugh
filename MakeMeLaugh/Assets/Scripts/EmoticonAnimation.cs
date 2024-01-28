@@ -18,4 +18,9 @@ public class EmoticonAnimation : MonoBehaviour
         transform.DOLocalMoveY(10, 0);
         transform.DOLocalMoveY(yPos, 1f).SetEase(Ease.OutElastic,1,1f);
     }
+
+    private void OnDisable()
+    {
+        transform.position = new Vector3(0, yPos, 0);
+    }
 }

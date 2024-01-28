@@ -3571,6 +3571,7 @@ GameObject:
   - component: {fileID: 728917200}
   - component: {fileID: 728917202}
   - component: {fileID: 728917201}
+  - component: {fileID: 728917203}
   m_Layer: 0
   m_Name: Face (1)
   m_TagString: Untagged
@@ -3635,6 +3636,18 @@ MonoBehaviour:
   - {fileID: 750861479}
   - {fileID: 284751668}
   - {fileID: 1802043474}
+--- !u!114 &728917203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728917199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04212ea8b195cf641964388b74b2fe89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &750861477
 GameObject:
   m_ObjectHideFlags: 0
