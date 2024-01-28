@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private RawImage transitionMask;
     private Image outroMask;
     private TextMeshProUGUI line;
-    private GameObject emoticon;
+    private Face[] faceArray;
     private GameObject iconHolder;
 
     private void Awake()
@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour
     {
         // StartCoroutine(FadeOut());
         if (scene.buildIndex == 0) return;
-        
-        emoticon = GameObject.Find("Face");
+
+        faceArray = FindObjectsOfType<Face>();
         iconHolder = GameObject.Find("Icon Holder");
         
         isInGame = false;
-        emoticon.SetActive(false);
+        foreach (var face in faceArray) face.gameObject.SetActive(false);
         iconHolder.SetActive(false);
 
         outroMask.rectTransform.DOLocalMoveX(2000, 0);
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
                         .OnComplete((() =>
                         {
                             isInGame = true;
-                            emoticon.SetActive(true);
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
                             iconHolder.SetActive(true);
                         }));
                     openingSequence.Play();
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
                         .OnComplete((() =>
                         {
                             isInGame = true;
-                            emoticon.SetActive(true);
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
                             iconHolder.SetActive(true);
                         }));
                     openingSequence.Play();
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
                         .OnComplete((() =>
                         {
                             isInGame = true;
-                            emoticon.SetActive(true);
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
                             iconHolder.SetActive(true);
                         }));
                     openingSequence.Play();
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
                         .OnComplete((() =>
                         {
                             isInGame = true;
-                            emoticon.SetActive(true);
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
                             iconHolder.SetActive(true);
                         }));
                     openingSequence.Play();
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
                         .OnComplete((() =>
                         {
                             isInGame = true;
-                            emoticon.SetActive(true);
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
                             iconHolder.SetActive(true);
                         }));
                     openingSequence.Play();
@@ -172,8 +172,25 @@ public class GameManager : MonoBehaviour
                         .OnComplete((() =>
                         {
                             isInGame = true;
-                            emoticon.SetActive(true);
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
                             iconHolder.SetActive(true);
+                        }));
+                    openingSequence.Play();
+                    break;
+                case 7:
+                    openingSequence
+                        .Append(line.DOText("", 0f))
+                        .AppendInterval(1)
+                        .Append(line.DOText("As the quest reaches a zenith of fervor and the trials intensify...", 0f))
+                        .AppendInterval(2)
+                        .Append(line.DOText("", 0))
+                        .AppendInterval(0.5f)
+                        .OnComplete((() =>
+                        {
+                            isInGame = true;
+                            foreach (var face in faceArray) face.gameObject.SetActive(true);
+                            iconHolder.SetActive(true);
+                            Invoke("PlayLevelOutro", 10f);
                         }));
                     openingSequence.Play();
                     break;
@@ -194,7 +211,34 @@ public class GameManager : MonoBehaviour
 
     public void PlayLevelOutro()
     {
-        outroMask.rectTransform.DOLocalMoveX(2000, 0);
+        if (SceneManager.GetActiveScene().buildIndex == 7)
+        {
+            foreach (var icon in iconHolder.GetComponentsInChildren<AbilityIcon>()) icon.enabled = false;
+            Sequence outroSequence = DOTween.Sequence();
+            outroSequence
+                .Append(Camera.main.DOOrthoSize(0.75f, 6f))
+                .AppendInterval(3)
+                .Append(outroMask.rectTransform.DOLocalMoveX(2000, 0))
+                .Append(outroMask.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.InQuad))
+                .Append(line.DOText("", 0f))
+                .AppendInterval(1)
+                .Append(line.DOText("you might find yourself pondering the very essence of your endeavor.", 0f))
+                .AppendInterval(3)
+                .Append(line.DOText("How to Make Laugh",0f))
+                .AppendInterval(2)
+                .Append(line.DOText("Made for GGJ 2024\nby Blaer, Linke & Haotian",0f))
+                .AppendInterval(3)
+                .Append(line.DOText("", 0f))
+                .OnComplete((() =>
+                {
+                    ProceedToNextLevel();
+                }));
+            outroSequence.Play();
+        }
+        
+        if (SceneManager.GetActiveScene().buildIndex <= 6)
+        {
+            outroMask.rectTransform.DOLocalMoveX(2000, 0);
         outroMask.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.InQuad).OnComplete((() =>
         {
             Sequence outroSequence = DOTween.Sequence();
@@ -276,6 +320,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }));
+        }
     }
      
     public void ProceedToNextLevel()
@@ -298,6 +343,9 @@ public class GameManager : MonoBehaviour
             {
                 line.DOText("", 0);
                 SceneManager.LoadScene(0);
+                outroMask.rectTransform.DOLocalMoveX(2000, 0);
+                transitionMask.rectTransform.DOLocalMoveX(0, 0);
+                transitionMask.rectTransform.DOLocalMoveX(-2000, 0.5f).SetEase(Ease.InQuad);
             }));
         }
     }
