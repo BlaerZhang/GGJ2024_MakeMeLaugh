@@ -37,13 +37,13 @@ public class AnimatorManager : MonoBehaviour
     private void OnAbilityTriggered(Ability ability)
     {
         if (ability.eyebrowsChangeValue > 0) eyebrow.SetTrigger("Eyebrow Feedback");
-        if (ability.eyebrowsChangeValue < 0) eyebrow.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,20,0.5f);
+        if (ability.eyebrowsChangeValue < 0) eyebrow.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
 
         if (ability.eyesChangeValue > 0) eyes.SetTrigger("Eye Feedback");
-        if (ability.eyesChangeValue < 0) eyes.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,20,0.5f);
+        if (ability.eyesChangeValue < 0) eyes.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
 
         if (ability.mouthChangeValue > 0) mouth.SetTrigger("Mouth Feedback");
-        if (ability.mouthChangeValue < 0) mouth.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,20,0.5f);
+        if (ability.mouthChangeValue < 0) mouth.transform.DOMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
         
     }
 }
