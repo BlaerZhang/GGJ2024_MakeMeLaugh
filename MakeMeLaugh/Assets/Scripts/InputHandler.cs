@@ -12,7 +12,7 @@ public class InputHandler : MonoBehaviour
     public float playInterval;
     private float timeSinceLastPlay;
 
-    public static Action<Ability> onAbilityTriggered;
+    public static Action<Ability, Face> onAbilityTriggered;
     public static Action onLevelPassed;
 
     private bool isLevelPassed = false;
@@ -76,10 +76,11 @@ public class InputHandler : MonoBehaviour
                     foreach (var face in faces)
                     {
                         face.ChangeValue(face.abilities[abilityIndex]);
+                        onAbilityTriggered(face.abilities[abilityIndex], face);
                     }
 
                     timeSinceLastPlay = 0f;
-                    onAbilityTriggered(ability);
+                    
                 }
             }
         }

@@ -38,8 +38,9 @@ public class AnimatorManager : MonoBehaviour
         mouth.SetBool("Win", true);
     }
 
-    private void OnAbilityTriggered(Ability ability)
+    private void OnAbilityTriggered(Ability ability, Face face)
     {
+        if (!face.Equals(gameObject.GetComponent<Face>())) return;
         if (ability.eyebrowsChangeValue > 0) eyebrow.SetTrigger("Eyebrow Feedback");
         if (ability.eyebrowsChangeValue < 0) eyebrow.transform.DOLocalMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
 
@@ -48,6 +49,5 @@ public class AnimatorManager : MonoBehaviour
 
         if (ability.mouthChangeValue > 0) mouth.SetTrigger("Mouth Feedback");
         if (ability.mouthChangeValue < 0) mouth.transform.DOLocalMoveX(0.2f, 0.5f).SetEase(Ease.Flash,10,0.5f);
-        
     }
 }
