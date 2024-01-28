@@ -26,9 +26,13 @@ public class InputHandler : MonoBehaviour
     public List<Ability> abilities = new List<Ability>();
 
     public event Action<Ability> onAbilityTriggered;
+    public event Action onLevelPassed;
+
+    private bool isLevelPassed = false;
 
     void Update()
     {
+        if (isLevelPassed) return;
         if (timeSinceLastPlay < playInterval)
         {
             timeSinceLastPlay += Time.deltaTime;
@@ -46,13 +50,13 @@ public class InputHandler : MonoBehaviour
 
     private void DampOutValue()
     {
-        if (eyeBrowsValue > 0) eyeBrowsValue -= dampSpeed;
+        if (eyeBrowsValue > 0) eyeBrowsValue -= dampSpeed * Time.deltaTime;
         else eyeBrowsValue = 0;
 
-        if (eyesValue > 0) eyesValue -= dampSpeed;
+        if (eyesValue > 0) eyesValue -= dampSpeed * Time.deltaTime;
         else eyesValue = 0;
 
-        if (mouthValue > 0) mouthValue -= dampSpeed;
+        if (mouthValue > 0) mouthValue -= dampSpeed * Time.deltaTime;
         else mouthValue = 0;
     }
 
@@ -61,6 +65,8 @@ public class InputHandler : MonoBehaviour
         if (eyeBrowsValue >= passValue & eyesValue >= passValue & mouthValue >= passValue)
         {
             // pass level
+            isLevelPassed = true;
+            onLevelPassed();
             print("pass the level");
         }
     }

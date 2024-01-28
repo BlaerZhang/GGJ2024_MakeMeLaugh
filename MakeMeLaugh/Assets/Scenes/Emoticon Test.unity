@@ -425,7 +425,7 @@ Transform:
   m_GameObject: {fileID: 118814982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2624,8 +2624,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerKey: 101
   abilityIcon: {fileID: 605282346}
-  eyebrowsChangeValue: -2.5
-  eyesChangeValue: -2.5
+  eyebrowsChangeValue: -1
+  eyesChangeValue: -1
   mouthChangeValue: 10
 --- !u!4 &970737953
 Transform:
@@ -2701,7 +2701,7 @@ Transform:
   m_GameObject: {fileID: 1047921174}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3385,7 +3385,7 @@ Transform:
   m_GameObject: {fileID: 1387774098}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
