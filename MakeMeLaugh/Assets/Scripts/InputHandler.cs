@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour
 {
@@ -67,8 +68,15 @@ public class InputHandler : MonoBehaviour
         {
             if (Input.GetKeyDown(ability.triggerKey))
             {
+                if (timeSinceLastPlay >= playInterval) ability.abilityIcon.cooldownMask.fillAmount = 1;
+            }
+
+            if (Input.GetKeyUp(ability.triggerKey))
+            {
                 if (timeSinceLastPlay >= playInterval)
                 {
+                    StartCoroutine(ability.abilityIcon.CooldownEffect(playInterval));
+
                     // eyebrows
                     if (ability.eyebrowsChangeValue > 0)
                     {
